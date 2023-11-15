@@ -1,0 +1,71 @@
+<%- include ../layouts/cabecera.ejs %>
+
+        <br/>
+        <br/>
+        <a href="/sombreros/crear" class="btn btn-primary" type="button">Crear un nuevo registro</a>
+        <br/>
+        <br/>
+        <table class="table table-light">
+            <thead class="thead-light">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Imagen</th>
+                    <th>Tipo</th>
+                    <th>Material</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+                <% for( let sombrero = 0; sombrero < sombreros.length; sombrero++ ) { %>
+                    <tr>
+                        <td> <%=sombreros[sombrero].id%> </td>
+                        <td> <%=sombreros[sombrero].nombre%> </td>
+
+                        <td>
+                        <img class="img-thumbnail" width="100" src="images/<%=sombreros[sombrero].imagen%>" alt="">
+                             
+                        
+                        </td>
+
+                        <td> <%=sombreros[sombrero].tipo%> </td>
+                        <td> <%=sombreros[sombrero].material%> </td>
+                        <td> <%=sombreros[sombrero].precio%> </td>
+
+                        <td> 
+                            
+                            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                
+                            <form class="form-inline" method="get" action="/sombreros/editar/<%=sombreros[sombrero].id%> ">
+                                
+                                <button class="btn btn-warning" type="submit">Editar</button>
+
+                            </form>
+
+                        </div>
+                         |
+
+                            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                
+                                <form class="form-inline" method="post" action="/sombreros/eliminar/<%=sombreros[sombrero].id%> ">
+                                    
+                                    <button class="btn btn-danger" type="submit">Borrar</button>
+
+                                </form>
+
+                            </div>
+
+
+
+                        </td>
+                    </tr>
+    
+                <% } %>
+                
+    
+            </tbody>
+        </table>
+
+        <%- include ../layouts/cabecera.ejs %>

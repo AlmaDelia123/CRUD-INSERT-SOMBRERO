@@ -1,0 +1,58 @@
+<%- include ../layouts/cabecera.ejs %>
+</br>
+</br>
+
+<div class="card">
+    <div class="card-header">
+        Formulario de captura
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Editar datos del sombrero</h5>
+        <p class="card-text">
+
+<form method="post" action="../actualizar/" enctype="multipart/form-data">
+</br>
+</br>
+<input type="hidden" name="id" value="<%=sombrero.id%>">
+
+    <div class="form-group">
+        <label for="my-input">Nombre:</label>
+        <input id="my-input" value="<%=sombrero.nombre%>" class="form-control" type="text" name="nombre">
+    </div>
+    </br>
+    <div class="form-group">
+        <label for="my-input">Imagen</label>
+
+        <img class="img-thumbnail" src="../../images/<%=sombrero.imagen%>" width="100" alt=""> 
+
+        <input id="my-input" class="form-control-file" type="file" name="archivo">
+    </div>
+    </br>
+    <div class="form-group">
+        <label for="my-input">Tipo:</label>
+        <input id="my-input" value="<%=sombrero.tipo%>" class="form-control" type="text" name="tipo">
+    </div>
+    </br>
+    <div class="form-group">
+        <label for="my-input">Material:</label>
+        <input id="my-input" value="<%=sombrero.material%>" class="form-control" type="text" name="material">
+    </div>
+    </br>
+    <div class="form-group">
+        <label for="my-input">Precio:</label>
+        <input id="my-input" value="<%=sombrero.precio%>" class="form-control" type="text" name="precio">
+    </div>
+    </br>
+    <button class="btn btn-success" type="submit">Actualizar</button>
+    <a class="btn btn-primary" href="/sombreros">Cancelar </a>
+    
+</form>
+
+
+
+        </p>
+    </div>
+</div>
+
+
+<%- include ../layouts/pie.ejs %>
