@@ -2,7 +2,7 @@
 
         <br/>
         <br/>
-        <a href="/sombreros/crear" class="btn btn-primary" type="button">Crear un nuevo registro</a>
+        <a href="/vendedor/sombreros/crear" class="btn btn-primary" type="button">Crear un nuevo registro</a>
         <br/>
         <br/>
         <table class="table table-light">
@@ -25,7 +25,7 @@
                         <td> <%=sombreros[sombrero].nombre%> </td>
 
                         <td>
-                        <img class="img-thumbnail" width="100" src="images/<%=sombreros[sombrero].imagen%>" alt="">
+                        <img class="img-thumbnail" width="100" src="/images/<%=sombreros[sombrero].imagen%>" alt="">
                              
                         
                         </td>
@@ -38,7 +38,7 @@
                             
                             <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
                                 
-                            <form class="form-inline" method="get" action="/sombreros/editar/<%=sombreros[sombrero].id%> ">
+                            <form class="form-inline" method="get" action="/vendedor/sombreros/editar/<%=sombreros[sombrero].id%> ">
                                 
                                 <button class="btn btn-warning" type="submit">Editar</button>
 
@@ -49,7 +49,7 @@
 
                             <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
                                 
-                                <form class="form-inline" method="post" action="/sombreros/eliminar/<%=sombreros[sombrero].id%> ">
+                                <form class="form-inline" method="post" action="/vendedor/sombreros/eliminar/<%=sombreros[sombrero].id%> ">
                                     
                                     <button class="btn btn-danger" type="submit">Borrar</button>
 

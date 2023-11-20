@@ -1,9 +1,10 @@
 var mysql = require("mysql");
+
 var con= mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: 'root2023',
-        database: 'sombrero'
+        password: 'chanocua24',
+        database: 'sombreros_calentanos'
 
 
 
@@ -12,7 +13,7 @@ var con= mysql.createConnection({
 con.connect(
     (err)=>{
         if(!err){
-            console.log('Conexion establecida');
+            console.log('Conexion establecida http://localhost:3002');
         }else{
             console.log('Error de conexion');
 

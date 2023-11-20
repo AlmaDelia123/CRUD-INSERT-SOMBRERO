@@ -23,7 +23,7 @@ module.exports={
         console.log(req.file.filename);
 
         sombrero.insertar(conexion,req.body,req.file,function (err) {
-                     res.redirect('/sombreros');
+                     res.redirect('/vendedor/sombreros');
         });
 
     },
@@ -37,7 +37,7 @@ module.exports={
                 borrar.unlinkSync(nombreImage);
             }
             sombrero.borrar(conexion,req.params.id,function (err){
-                res.redirect('/sombreros');
+                res.redirect('/vendedor/sombreros');
             });
 
         });
@@ -79,6 +79,6 @@ module.exports={
 
         }
 
-        res.redirect('/sombreros');
+        res.redirect('/vendedor/sombreros');
     }
 }
