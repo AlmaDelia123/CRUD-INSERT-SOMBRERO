@@ -1,52 +1,68 @@
-<%- include ../layouts/cabecera.ejs %>
+<!-- <%- include ../layouts/cabecera.ejs %> -->
+<%- include('../partials/__header_vendor') %>
+    <!-- <style>
+        main {
+            padding-left: 0;
+            padding-top: 5rem;
+        }
+
+        @media (min-width: 768px) {
+            main {
+                padding-left: 15rem;
+                padding-top: 5rem;
+            }
+        }
+    </style> -->
+    <main>
+        </br>
+        <div class="card">
+            </br>
+            <div class="card-header">
+                Formulario de captura
+            </div>
+
+
+            <div class="card-body">
+                <h5 class="card-title">Datos de los sombreros</h5>
+                <p class="card-text">
+                <form method="post" action="/vendedor/sombreros/crear" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="my-input">Nombre:</label>
+                        <input id="my-input" class="form-control" type="text" name="nombre">
+                    </div>
+                    </br>
+                    <div class="form-group">
+                        <label for="my-input">Imagen</label>
+                        <input id="my-input" class="form-control-file" type="file" name="archivo">
+                    </div>
+                    </br>
+                    <div class="form-group">
+                        <label for="my-input">Tipo:</label>
+                        <input id="my-input" class="form-control" type="text" name="tipo">
+                    </div>
+                    </br>
+                    <div class="form-group">
+                        <label for="my-input">Material:</label>
+                        <input id="my-input" class="form-control" type="text" name="material">
+                    </div>
+                    </br>
+                    <div class="form-group">
+                        <label for="my-input">Precio:</label>
+                        <input id="my-input" class="form-control" type="text" name="precio">
+                    </div>
+                    </br>
+                    <button class="btn btn-success" type="submit">Guardar</button>
+                    <a class="btn btn-primary" href="/vendedor/home">Cancelar </a>
+                </form>
+
+
+                </p>
+            </div>
+        </div>
+
+    </main>
 
 
 
-</br>
-<div class="card">
-</br>
-    <div class="card-header">
-        Formulario de captura 
-    </div>
 
-
-    <div class="card-body">
-        <h5 class="card-title">Datos de los sombreros</h5>
-        <p class="card-text">
-<form method="post" action="/vendedor/sombreros/crear" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="my-input">Nombre:</label>
-        <input id="my-input" class="form-control" type="text" name="nombre">
-    </div>
-    </br>
-    <div class="form-group">
-        <label for="my-input">Imagen</label>
-        <input id="my-input" class="form-control-file" type="file" name="archivo">
-    </div>
-    </br>
-    <div class="form-group">
-        <label for="my-input">Tipo:</label>
-        <input id="my-input" class="form-control" type="text" name="tipo">
-    </div>
-    </br>
-    <div class="form-group">
-        <label for="my-input">Material:</label>
-        <input id="my-input" class="form-control" type="text" name="material">
-    </div>
-    </br>
-    <div class="form-group">
-        <label for="my-input">Precio:</label>
-        <input id="my-input" class="form-control" type="text" name="precio">
-    </div>
-    </br>
-    <button class="btn btn-success" type="submit">Guardar</button>
-    <a class="btn btn-primary" href="/vendedor/sombreros">Cancelar </a>
-</form>
-
-
-        </p>
-    </div>
-</div>
-
-
-<%- include ../layouts/pie.ejs %>
+    <%- include ../layouts/pie.ejs %>
