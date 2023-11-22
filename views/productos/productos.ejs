@@ -1,0 +1,59 @@
+<!-- product-view.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Product View</title>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <form method="POST" action="/productos">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search products..." name="search">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <% for( let sombrero = 0; sombrero < sombreros.length; sombrero++ ) { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img class="img-thumbnail" width="100" src="/images/<%=sombreros[sombrero].imagen%>" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title"><%=sombreros[sombrero].nombre%></h5>
+                            <p class="card-text">Type: <%=sombreros[sombrero].tipo%></p>
+                            <p class="card-text">Material: <%=sombreros[sombrero].material%></p>
+                            <p class="card-text">Price: <%=sombreros[sombrero].precio%></p>
+                        </div>
+                    </div>
+                </div>
+            <% }; %>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -6,6 +6,7 @@ const homeController = require('../controllers/homeController');
 
 var multer = require('multer');
 const { route } = require('../app');
+const productController = require('../controllers/productController');
 var fecha= Date.now();
 
 var rutaAlmacen= multer.diskStorage(
@@ -26,14 +27,14 @@ var cargar= multer({ storage:rutaAlmacen});
 /* GET home page. */
 //vista principal del sitio
 router.get('/', homeController.index)
-
+//router.get('/',productController.index)//se agrgo para los productos
 
 // login y registro de usuarios
 router.get('/login', usersController.loginGET)
 router.post('/login', usersController.loginPOST)
 router.get('/registrarUsuario', usersController.registrarUsuarioGET)
 router.post('/registrarUsuario', usersController.registrarUsuarioPOST)
-
+//router.get('/login/productoss',usersController.productosGET)
 // router.get('/',sombrerosController.index);
 
 // gets y post para el vendedor
@@ -43,5 +44,7 @@ router.post("/vendedor/sombreros/crear",cargar.single("archivo"),sombrerosContro
 router.post('/vendedor/sombreros/eliminar/:id',sombrerosController.eliminar);
 router.get('/vendedor/sombreros/editar/:id',sombrerosController.editar);
 router.post("/vendedor/sombreros/actualizar",cargar.single("archivo"),sombrerosController.actualizar);
+
+router.get('/usuario/productos',productController.index);
 
 module.exports = router;

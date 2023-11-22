@@ -123,6 +123,8 @@ usersController.registrarUsuarioPOST = (req, res) => {
     // });
 
 
+
+
 }
 
 module.exports = usersController;
