@@ -1,3 +1,6 @@
+/*este controlador se encarga de hacer todas las operaciones
+oon la parte del crud de los sombreros */
+
 var conexion=require('../config/conexion');
 var sombrero= require("../model/sombrero");
 var borrar= require("fs");
@@ -21,8 +24,9 @@ module.exports={
     guardar:function (req,res) {
         console.log(req.body);
         console.log(req.file.filename);
-
+        
         sombrero.insertar(conexion,req.body,req.file,function (err) {
+                    // alert("Sombrero Agregado")
                      res.redirect('/vendedor/sombreros');
         });
 

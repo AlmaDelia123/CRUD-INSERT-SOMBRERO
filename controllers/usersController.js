@@ -1,3 +1,6 @@
+/*este controlador se encarga de realizar
+todas las operaciones para el login y el registro */
+
 const { render } = require("ejs");
 var conexion = require('../config/conexion');
 const { get } = require("../app");
@@ -38,13 +41,14 @@ usersController.loginPOST = (req, res) => {
                 case 'vendedor':
                     res.redirect('vendedor/home');
                     // req.session.isAuthenticated = true;
+
                     // req.session.userId = usuario.idusers_dates/* ID del usuario autenticado */
                     // console.log(req.session.isAuthenticated)
                     console.log(usuario.idusers_dates)
                     break;
 
                 case 'usuario':
-                    res.redirect('usuario/home');
+                    res.redirect('/');
                     // req.session.isAuthenticated = true;
                     // req.session.userId = usuario.idusers_dates/* ID del usuario autenticado */
                     console.log(usuario.idusers_dates)
@@ -52,7 +56,7 @@ usersController.loginPOST = (req, res) => {
                     break;
 
                 default:
-                    res.redirect('home');
+                    // res.redirect('home');
                     break;
 
 
