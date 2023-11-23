@@ -62,10 +62,12 @@
 
                             <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
 
-                                <form class="form-inline" method="post"
-                                    action="/vendedor/sombreros/eliminar/<%=sombreros[sombrero].id%> ">
+                                <!-- <form class="form-inline" method="post" 
+                                    action="/vendedor/sombreros/eliminar/<%=sombreros[sombrero].id%> "> -->
 
-                                    <button class="btn btn-danger" type="submit">Borrar</button>
+                                    <a onclick="confirmar('<%= sombreros[sombrero].id %>')" class="btn btn-outline-danger">Eliminar</a>
+
+
 
                                 </form>
 
@@ -85,4 +87,44 @@
     </main>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
+    <script>
+        function confirmar(id) {
+            Swal.fire({
+                title: "Confirma eliminar el registro?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                cancelButtonText: "Cancelar",
+                confirmButtonText: "Confirmar"
+            }).then((result) => {   
+                if (result.isConfirmed) {
+                    fetch(`/vendedor/sombreros/eliminar/${id}`, {
+                        method: 'POST'
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Manejar la respuesta si es necesario
+                        console.log(data);
+                        // Actualizar la tabla después de la eliminación exitosa
+                        if (data.message === 'Sombrero eliminado exitosamente') {
+                            location.reload(); // Recargar la página para mostrar la tabla actualizada
+                        }
+                    })
+                    .catch(error => {
+                        console.error('There has been a problem with your fetch operation:', error);
+                        // Manejar errores si es necesario
+                    });
+                } 
+            });
+        } 
+    </script>
+    
+    
     <%- include ../layouts/cabecera.ejs %>

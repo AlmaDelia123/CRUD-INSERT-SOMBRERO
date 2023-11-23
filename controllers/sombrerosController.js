@@ -31,22 +31,33 @@ module.exports={
         });
 
     },
-    eliminar:function (req,res) {
+    
+    eliminar: function (req, res) {
         console.log("Recepcion de datos");
         console.log(req.params.id);
-
-        sombrero.retornarDatosID(conexion,req.params.id,function (err,registros) {
-            var nombreImage="public/images/"+(registros[0].imagen); 
-            if(borrar.existsSync(nombreImage)){
-                borrar.unlinkSync(nombreImage);
-            }
-            sombrero.borrar(conexion,req.params.id,function (err){
-                res.redirect('/vendedor/sombreros');
+    
+        sombrero.retornarDatosID(conexion, req.params.id, function (err, registros) {
+            var nombreImagen = "public/images/" + registros[0].imagen;
+    
+            sombrero.borrar(conexion, req.params.id, function (err) {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).send('Error al eliminar el sombrero');
+                }
+    
+                // Eliminar la imagen después de eliminar el sombrero
+                if (borrar.existsSync(nombreImagen)) {
+                    borrar.unlinkSync(nombreImagen);
+                }
+    
+                // Redirigir a la página de sombreros después de eliminar
+                // Cambiar a una respuesta JSON indicando la eliminación exitosa
+                res.json({ message: 'Sombrero eliminado exitosamente' });
             });
-
         });
-
     },
+    
+    
     editar:function(req,res){
         sombrero.retornarDatosID(conexion,req.params.id,function (err,registros) {
             console.log(registros[0]);
