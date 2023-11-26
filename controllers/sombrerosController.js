@@ -18,20 +18,31 @@ module.exports={
         });
 
     },
+
+    //Funcion que dirige a la vista crear sombrero con su formulario
     crear:function (req, res){
         res.render('sombreros/crear');
     },
-    guardar:function (req,res) {
+
+
+    // crud guardar sombrero 
+    guardar: function (req, res) {
         console.log(req.body);
         console.log(req.file.filename);
-        
-        sombrero.insertar(conexion,req.body,req.file,function (err) {
-                    // alert("Sombrero Agregado")
-                     res.redirect('/vendedor/sombreros');
+    
+        sombrero.insertar(conexion, req.body, req.file, function (err) {
+            if (err) {
+                // Manejo de errores si es necesario
+                console.error(err);
+                return res.status(500).send('Error al insertar el sombrero');
+            }
+    
+            // Redirección con indicador para mostrar el Sweet Alert
+            res.redirect('/vendedor/sombreros?mostrarAlerta=true');
         });
-
     },
     
+    // crud eliminar el sombrero
     eliminar: function (req, res) {
         console.log("Recepcion de datos");
         console.log(req.params.id);
@@ -51,13 +62,13 @@ module.exports={
                 }
     
                 // Redirigir a la página de sombreros después de eliminar
-                // Cambiar a una respuesta JSON indicando la eliminación exitosa
-                res.json({ message: 'Sombrero eliminado exitosamente' });
+                res.status(200).send('Sombrero eliminado exitosamente');
             });
         });
     },
     
     
+    //Funcion que dirige a la vista editar sombrero con su formulario
     editar:function(req,res){
         sombrero.retornarDatosID(conexion,req.params.id,function (err,registros) {
             console.log(registros[0]);
@@ -65,6 +76,8 @@ module.exports={
         });
 
     },
+
+    //crud actualizar el sombrero
     actualizar:function name(req,res) {
         console.log(req.body.nombre);
         //console.log(req.file.filename);
@@ -94,6 +107,9 @@ module.exports={
 
         }
 
-        res.redirect('/vendedor/sombreros');
+        
+            // Redirección con indicador para mostrar el Sweet Alert de la actualizacion
+            res.redirect('/vendedor/sombreros?mostrarAlerta2=true');
+            //res.redirect('/vendedor/sombreros');
     }
 }
