@@ -9,6 +9,4 @@ vendedorController.home = (req, res) =>{
     res.render('vendedor/home');
 }
 
-
-
 module.exports = vendedorController;
