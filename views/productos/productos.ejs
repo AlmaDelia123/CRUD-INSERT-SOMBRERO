@@ -9,42 +9,60 @@
     <title>Product View</title>
     <style>
         .card {
-        height: 100%;
-        border-radius: 15px; /* Ajusta el valor según la cantidad de redondeo que desees */
-        overflow: hidden; /* Esto asegura que el contenido redondeado no se salga del borde */
-        background-color: #faf9a6; /* Color de fondo de la tarjeta, ajusta según tus preferencias */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para resaltar la tarjeta */
-    }
+            height: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            background-color: rgb(143, 191, 247);
+            box-shadow: 0 4px 8px rgb(0, 0, 0);
+            border: 1px solid rgb(207, 245, 198);
+        }
 
-    .img-thumbnail {
-        width: 100%;
-        height: 150px;
-        object-fit: contain;
-        border: 4px solid #333; /* Ajusta el valor del grosor y el color del borde según tus preferencias */
-        border-radius: 10px; /* Ajusta el valor según la cantidad de redondeo que desees */
-    }
+        .img-thumbnail {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border: none;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
 
-    .card-body {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
-    }
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
 
-    .declaration {
-        background-color: rgb(233, 175, 109);
-        padding: 10px;
-        margin-top: 10px;
-    }
+        .declaration {
+            background-color: rgb(118, 158, 245);
+            padding: 10px;
+            margin-top: 10px;
+        }
 
-    .card-title {
-        font-family: 'Roboto', sans-serif; /* Cambia 'Roboto' por la fuente que desees usar */
-        font-size: 1.5rem; /* Ajusta el tamaño del título según tus preferencias */
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 10px;
-        font-style: italic; /* Estilo de letra cursiva */
-    }
+        .card-title {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            font-style: italic;
+            color: #000000;
+        }
+
+        .card-text {
+            color: #000000;
+        }
+
+        .btn-dark {
+            background-color: #245efd;
+            color: #fff;
+            border: 1px solid #000000;
+        }
+
+        .btn-dark:hover {
+            background-color: #000000;
+            border: 1px solid #ffffff;
+        }
 
     </style>
 </head>
