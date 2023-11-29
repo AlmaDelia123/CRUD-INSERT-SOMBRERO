@@ -8,7 +8,7 @@ const { get } = require("../app");
 const { createConnection, defaultConfig, configBDVendedor } = require('../config/conexion');
 
 //var global para almacenar las conexiones
-var conexion = "";
+var conexion = createConnection(defaultConfig);
 
 const usersController = {}
 
@@ -23,8 +23,8 @@ usersController.loginPOST = (req, res) => {
     const correo = req.body.correo;
     const password = req.body.password;
 
-    //inicia la conexion inicial con la base
-    conexion = createConnection(defaultConfig);
+    // //inicia la conexion inicial con la base
+    // conexion = createConnection(defaultConfig);
 
     // req.getConnection((err, conexion) => {
     conexion.query("SELECT * FROM users_sesion WHERE correo = ? AND password = ?", [correo, password], (err, datosConsultados) => {

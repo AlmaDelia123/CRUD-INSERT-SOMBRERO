@@ -66,8 +66,8 @@ const defaultConfig = {
 
 const configBDVendedor = {
     host: 'localhost',
-    user: 'root',
-    password: 'chanocua24',
+    user: 'vendedor',
+    password: 'vendedor2023',
     database: 'sombreros_calentanos'
 };
 
