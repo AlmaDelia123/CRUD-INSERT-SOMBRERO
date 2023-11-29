@@ -1,13 +1,16 @@
 /*este controlador se encarga de hacer todas las operaciones
 oon la parte del crud de los sombreros */
 
-var conexion=require('../config/conexion');
+const { createConnection, defaultConfig, configBDVendedor } = require('../config/conexion');
 var sombrero= require("../model/sombrero");
 var borrar= require("fs");
 
+var conexion = createConnection(configBDVendedor);
+// console.log(conexion)
 
 module.exports={
 
+    
 
     index:function(req, res) {
 
