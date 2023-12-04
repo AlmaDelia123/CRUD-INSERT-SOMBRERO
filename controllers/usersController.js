@@ -49,7 +49,7 @@ usersController.loginPOST = (req, res) => {
                     break;
 
                 case 'vendedor':
-                    conexion = createConnection(configBDVendedor);
+                    // conexion = createConnection(configBDVendedor);
                     
                     res.redirect('vendedor/home');
                     console.log(usuario.idusers_dates)

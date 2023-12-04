@@ -77,6 +77,7 @@ const configBDUsuario = {
     password: 'usuarioSombreros2023',
     database: 'sombreros_calentanos'
 }
+
 function createConnection(config) {
     console.log(config);
     return mysql.createConnection(config);
