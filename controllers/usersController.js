@@ -57,7 +57,7 @@ usersController.loginPOST = (req, res) => {
                     break;
 
                 case 'usuario':
-                    conexion = createConnection(configBDUsuario);
+                    // conexion = createConnection(configBDUsuario);
 
 
                     res.redirect('/usuario/productos');
@@ -73,7 +73,7 @@ usersController.loginPOST = (req, res) => {
 
         } else {
 
-            res.redirect('/')
+            res.redirect('/login')
         }
     });
 }

@@ -74,7 +74,7 @@ const configBDVendedor = {
 const configBDUsuario = {
     host: 'localhost',
     user: 'usuario',
-    password: 'usuario2023',
+    password: 'usuarioSombreros2023',
     database: 'sombreros_calentanos'
 }
 function createConnection(config) {

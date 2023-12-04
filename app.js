@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 
@@ -17,10 +18,28 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(session({
+  secret : '1234567890abcdefghijklmnopqrstuvwxyz',
+  resave : false,
+  saveUninitialized : true,
+  cookie : { secure : false }
+}));
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+
+
+app.use((req, res, next) => {
+  if (!req.session.cart) {
+      req.session.cart = [];
+  }
+  next();
+});
+
+
 
 
 app.use(bodyParser.urlencoded({ extended:false}));
@@ -52,24 +71,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-// var conexion = require('./config/conexion');
-// var mysql = require("mysql");
-
-// var con = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'chanocua24',
-//   database: 'sombreros_calentanos'
-// });
-
-
-// con.connect(
-//   (err) => {
-//       if (!err) {
-//           console.log('Conexion establecida http://localhost:3002');
-//       } else {
-//           console.log('Error de conexion');
-//       }
-//   });
-
 module.exports = app;
+
+
