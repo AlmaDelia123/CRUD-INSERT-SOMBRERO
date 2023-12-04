@@ -6,15 +6,15 @@ var borrar= require("fs");
 const productController = {}
 
 //carga  la vista principal del proyecto
-productController.index = (req, res) =>{
-
-    sombrero.obtener(conexion,function (err,datos){
+productController.index = (req, res) => {
+    sombrero.obtener(conexion, function (err, datos) {
         console.log(datos);
-        res.render('productos/productos', { title: 'Aplicacion', sombreros:datos });
-
+        // Verificar si req.session está definido y tiene una propiedad cart
+        const cart = req.session && req.session.cart ? req.session.cart : [];
+        res.render('productos/productos', { title: 'Aplicacion', sombreros: datos, cart: cart });
     });
-    
 }
+
 
 
 // index:function(req, res) {

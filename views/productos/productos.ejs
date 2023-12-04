@@ -1,147 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Product View</title>
-    <style>
-        .card {
-            height: 100%;
-            border-radius: 15px;
-            overflow: hidden;
-            background-color: rgb(143, 191, 247);
-            box-shadow: 0 4px 8px rgb(0, 0, 0);
-            border: 1px solid rgb(207, 245, 198);
-        }
-
-        .img-thumbnail {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border: none;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
-
-        .card-body {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-        }
-
-        .declaration {
-            background-color: rgb(118, 158, 245);
-            padding: 10px;
-            margin-top: 10px;
-        }
-
-        .card-title {
-            font-family: 'Roboto', sans-serif;
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 10px;
-            font-style: italic;
-            color: #000000;
-        }
-
-        .card-text {
-            color: #000000;
-        }
-
-        .btn-dark {
-            background-color: #245efd;
-            color: #fff;
-            border: 1px solid #000000;
-        }
-
-        .btn-dark:hover {
-            background-color: #000000;
-            border: 1px solid #ffffff;
-        }
-
-    </style>
+    <meta charset="utf-8">
+    <link href="https://getbootstrap.com/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
-
 <body>
-
-    <div class="container mt-5">
-        <div class="row mb-3">
-            <div class="col-md-12">
-                <form method="POST" action="/productos">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search products..." name="search">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit">Search</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="row">
-            <% for( let sombrero = 0; sombrero < sombreros.length; sombrero++ ) { %>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <img class="img-thumbnail" src="/images/<%=sombreros[sombrero].imagen%>" alt="">
+    <div class="container-fluid mt-5 mb-5">
+        <h1 class="text-center"><b>SOMBREROS CALENTANOS</b></h1>
+        <div class="mt-3 mb-3">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header"><b>Lista de productos</b></div>
                         <div class="card-body">
-                            <h5 class="card-title text-center mb-3"><%=sombreros[sombrero].nombre%></h5>
-                            <p class="card-text">Type: <%=sombreros[sombrero].tipo%></p>
-                            <p class="card-text">Material: <%=sombreros[sombrero].material%></p>
-                            <p class="card-text">Price: <%=sombreros[sombrero].precio%></p>
-
-                            <div class="declaration">
-                                <label for="vueltas">Vueltas:</label>
-                                <input type="number" id="vueltas" name="vueltas" min="30" max="100" value="30">
-                                <br>
-
-                                <label for="sombreroTipo">Tipo de sombrero:</label>
-                                <select id="sombreroTipo" name="sombreroTipo">
-                                    <option value="delgado">Delgado</option>
-                                    <option value="ancho">Ancho</option>
-                                </select>
-                                <br>
-
-                                <label for="ojilloTipo">Tipo de ojillo:</label>
-                                <select id="ojilloTipo" name="ojilloTipo">
-                                    <option value="oro">Oro</option>
-                                    <option value="plata">Plata</option>
-                                    <option value="normal">Normal</option>
-                                </select>
-                                <br>
-
-                                <label for="listonColor">Color del listón:</label>
-                                <input type="color" id="listonColor" name="listonColor" value="#ffffff">
-                                <br>
-
-                                <label for="copaSize">Tamaño de la copa (cm):</label>
-                                <input type="number" id="copaSize" name="copaSize" min="19" max="22" value="19">
-                                <br>
-
-                                <button class="btn btn-dark mt-2">Agregar al carrito</button>
-
+                            <div class="row">
+                                <% sombreros.forEach(product => { %>
+                                <div class="col-md-4 mb-5 text-center">
+                                    <img src="/images/<%= product.imagen %>" class="img-thumbnail mb-3" />
+                                    <h4><b><%= product.nombre %></b></h4>
+                                    <h3 class="text-danger"><%= product.precio %></h3>
+                                    <form method="post" action="/add_cart">
+                                        <input type="hidden" name="id" value="<%= product.id %>" />
+                                        <input type="hidden" name="nombre" value="<%= product.nombre %>" />
+                                        <input type="hidden" name="precio" value="<%= product.precio %>" />
+                                        <input type="submit" class="btn btn-warning" value="Añadir a la cesta" />
+                                    </form>
+                                </div>
+                                <% }) %>
                             </div>
                         </div>
                     </div>
                 </div>
-            <% }; %>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header"><b>Carrito de Compras</b></div>
+                        <div class="card-body">
+                            <table class="table">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio por Unidad</th>
+                                    <th>Precio Total</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                                <% if(cart.length > 0) { 
+                                    let total = 0;
+                                    cart.forEach(item => {
+                                %>
+                                <tr>
+                                    <td>
+                                        <%= item.nombre %>
+                                    </td>
+                                    <td>
+                                        <%= item.cantidad %>
+                                    </td>
+                                    <td>
+                                        <%= item.precio %>
+                                    </td>
+                                    <td>
+                                        <%= parseFloat(item.cantidad) * parseFloat(item.precio) %>
+                                    </td>
+                                    <td><button type="button" class="btn btn-danger btn-sm"
+                                            onclick="removeConfirmed('<%= item.id %>')">Eliminar</button></td>
+                                </tr>
+
+                                <%
+                                        total += parseFloat(item.cantidad) * parseFloat(item.precio);
+                                    })
+                                %>
+                                <tr>
+                                    <td colspan="3" align="right"><b>Total</b></td>
+                                    <td><%= total %></td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <%
+                                } else {
+                                %>
+                                <tr>
+                                    <td colspan="5" align="center">No se ha encontrado ningún artículo en el carrito</td>
+                                </tr>
+                                <%
+                                }
+                                %>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <!-- Modal de confirmación -->
+    <div class="modal" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar artículo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que quieres eliminarlo?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" onclick="removeConfirmed()">Eliminar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-*************" crossorigin="anonymous"></script>
+
+    <script>
+          function removeConfirmed(itemId) {
+        window.location.href = `/remove_item?id=${itemId}`;
+    }
+    </script>
 
 </body>
-
 </html>
