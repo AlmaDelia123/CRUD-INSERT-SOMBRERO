@@ -5,7 +5,7 @@ const { render } = require("ejs");
 const { get } = require("../app");
 // const con = require("../config/conexion");
 
-const { createConnection, defaultConfig, configBDVendedor } = require('../config/conexion');
+const { createConnection, defaultConfig, configBDVendedor, configBDUsuario } = require('../config/conexion');
 
 //var global para almacenar las conexiones
 var conexion = createConnection(defaultConfig);
@@ -57,10 +57,10 @@ usersController.loginPOST = (req, res) => {
                     break;
 
                 case 'usuario':
+                    conexion = createConnection(configBDUsuario);
 
 
-
-                    res.redirect('/');
+                    res.redirect('/usuario/productos');
                     console.log(usuario.idusers_dates);
 
                     break;

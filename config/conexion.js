@@ -71,10 +71,16 @@ const configBDVendedor = {
     database: 'sombreros_calentanos'
 };
 
+const configBDUsuario = {
+    host: 'localhost',
+    user: 'usuario',
+    password: 'usuario2023',
+    database: 'sombreros_calentanos'
+}
 function createConnection(config) {
     console.log(config);
     return mysql.createConnection(config);
 }
 
 
-module.exports = { createConnection, defaultConfig, configBDVendedor };
+module.exports = { createConnection, defaultConfig, configBDVendedor, configBDUsuario };
