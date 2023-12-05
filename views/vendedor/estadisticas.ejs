@@ -21,14 +21,30 @@
         </canvas>
         <button>Genera Reporte</button>
     </div>
+
+    <div style="width: 80%; margin: auto;" width="400" height="200">
+        <canvas id="myChart2">
+
+            
+        </canvas>
+        <button>Genera Reporte</button>
+    </div>
+
+    <div style="width: 80%; margin: auto;" width="400" height="200">
+        <canvas id="myChart3">
+
+            
+        </canvas>
+        <button>Genera Reporte</button>
+    </div>
 </main>
     
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Obtener datos de la página
-        const data = <%- JSON.stringify(data) %>;
+        const data = <%- JSON.stringify(data1) %>;
 
-        
+
         // Definir colores dinámicamente
         const backgroundColors = data.map(() => getRandomColor());
         const borderColors = data.map(() => getRandomColor());
@@ -55,18 +71,61 @@
                     }
                 }
             }
+
+
+
+            
         });
 
-        // Función para generar colores aleatorios
-        function getRandomColor() {
-            const letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
+        // Obtener datos de la página
+        const data2 = <%- JSON.stringify(data1) %>;
+
+
+        // Definir colores dinámicamente
+        const backgroundColors2 = data2.map(() => getRandomColor());
+        const borderColors2 = data2.map(() => getRandomColor());
+
+        // Configurar el gráfico
+        const ctx2 = document.getElementById('myChart2').getContext('2d');
+        const myChart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: data2.map(item => item.nombre_sombrero),
+                datasets: [{
+                    label: 'Ventas',
+                    data: data2.map(item => item.total_registros),
+                    backgroundColor: backgroundColors2,
+                    borderColor: borderColors2,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true, // Comienza desde cero en el eje y
+                        stepSize: 1 // Establece el paso para la escala del eje y (puedes ajustarlo según tus necesidades)
+                    }
+                }
             }
-            return color;
-        }
+
+
+
+            
+        });
+
+         
+       
     });
+
+     // Función para generar colores aleatorios
+     function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
 </script>
 
     </body>
