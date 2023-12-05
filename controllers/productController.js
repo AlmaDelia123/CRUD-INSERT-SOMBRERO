@@ -35,8 +35,6 @@ productController.estadisticas = (req, res) => {
             res.render("vendedor/estadisticas", {data:datos})
         }
     })
-
-
 }
 // productController.index = (req, res) => {
 //     sombrero.obtener(conexion, function (err, datos) {
