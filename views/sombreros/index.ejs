@@ -16,6 +16,7 @@
                     <th>Tipo</th>
                     <th>Material</th>
                     <th>Precio</th>
+                    <th>Cantidad</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -44,6 +45,9 @@
                         </td>
                         <td>
                             <%=sombreros[sombrero].precio%>
+                        </td>
+                        <td>
+                            <%=sombreros[sombrero].cantidad%>
                         </td>
 
                         <td>
@@ -173,6 +177,8 @@
             };
         }
     </script>
+    
+    <!--alerta para mostrar que los stokcs en sombreros estan bajos-->
     
     
     <%- include ../layouts/cabecera.ejs %>

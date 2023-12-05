@@ -27,7 +27,7 @@ var cargar= multer({ storage:rutaAlmacen});
 
 /* GET home page. */
 //vista principal del sitio
-router.get('/', homeController.index)
+router.get('/', productController.home)
 //router.get('/',productController.index)//se agrgo para los productos
 
 // login y registro de usuarios
@@ -53,5 +53,50 @@ router.get('/vendedor/sombreros/editar/:id',sombrerosController.editar);
 router.post("/vendedor/sombreros/actualizar",cargar.single("archivo"),sombrerosController.actualizar);
 
 router.get('/usuario/productos',productController.index);
+// router.get('/usuario/home', productController.home);
+
+
+
+
+router.post('/add_cart', (request, response) => {
+    const id = request.body.id;
+    const nombre = request.body.nombre;
+    const precio = parseFloat(request.body.precio);
+    let count = 0;
+
+    for (let i = 0; i < request.session.cart.length; i++) {
+        if (request.session.cart[i].id === id) {
+            request.session.cart[i].cantidad += 1;
+            count++;
+        }
+    }
+
+    if (count === 0) {
+        const cart_data = {
+            id: id,
+            nombre: nombre,
+            precio: precio,
+            cantidad: 1
+        };
+
+        request.session.cart.push(cart_data);
+    }
+
+    response.redirect("/usuario/productos");
+});
+
+router.get('/remove_item', (request, response) => {
+    const id = request.query.id;
+
+    // Usar Array.findIndex para encontrar el índice del elemento a eliminar
+    const indexToRemove = request.session.cart.findIndex(item => item.id === id);
+
+    if (indexToRemove !== -1) {
+        // Si se encontró el elemento, eliminarlo
+        request.session.cart.splice(indexToRemove, 1);
+    }
+
+    response.redirect("/usuario/productos");
+});
 
 module.exports = router;

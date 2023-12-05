@@ -1,22 +1,30 @@
 /*este controlador se encarga de realizar
 todas las operaciones para el login y el registro */
-
 const { render } = require("ejs");
-var conexion = require('../config/conexion');
+// var conexion = require('../config/conexion');
 const { get } = require("../app");
+// const con = require("../config/conexion");
+
+const { createConnection, defaultConfig, configBDVendedor, configBDUsuario } = require('../config/conexion');
+
+//var global para almacenar las conexiones
+var conexion = createConnection(defaultConfig);
+
 const usersController = {}
 
 //cuando la peticion sea get, manda la vista
 usersController.loginGET = (req, res) => {
-
-
     res.render('login/login')
 }
 
 //cuando la peticion sea post, manda los datos
 usersController.loginPOST = (req, res) => {
+
     const correo = req.body.correo;
     const password = req.body.password;
+
+    // //inicia la conexion inicial con la base
+    // conexion = createConnection(defaultConfig);
 
     // req.getConnection((err, conexion) => {
     conexion.query("SELECT * FROM users_sesion WHERE correo = ? AND password = ?", [correo, password], (err, datosConsultados) => {
@@ -33,47 +41,41 @@ usersController.loginPOST = (req, res) => {
             const rango = usuario.rango;
             console.log(rango)
 
+            //se cierra la conexion de la base inicial
+            conexion.end();
             /*con un switch mandamos la vista */
             switch (rango) {
                 case 'admin':
                     break;
 
                 case 'vendedor':
+                    // conexion = createConnection(configBDVendedor);
+                    
                     res.redirect('vendedor/home');
-                    // req.session.isAuthenticated = true;
-
-                    // req.session.userId = usuario.idusers_dates/* ID del usuario autenticado */
-                    // console.log(req.session.isAuthenticated)
                     console.log(usuario.idusers_dates)
+
                     break;
 
                 case 'usuario':
-                    res.redirect('/');
-                    // req.session.isAuthenticated = true;
-                    // req.session.userId = usuario.idusers_dates/* ID del usuario autenticado */
-                    console.log(usuario.idusers_dates)
-                    // console.log(req.session.isAuthenticated)
+                    // conexion = createConnection(configBDUsuario);
+
+
+                    res.redirect('/usuario/productos');
+                    console.log(usuario.idusers_dates);
+
                     break;
 
                 default:
-                    // res.redirect('home');
+
                     break;
-
-
-
-
-
             }
 
 
         } else {
 
-            res.redirect('/')
+            res.redirect('/login')
         }
     });
-    // });
-
-
 }
 
 //manda la vista del registro de usuario
@@ -130,5 +132,6 @@ usersController.registrarUsuarioPOST = (req, res) => {
 
 
 }
+
 
 module.exports = usersController;
