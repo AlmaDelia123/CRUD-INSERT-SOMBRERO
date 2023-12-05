@@ -54,7 +54,8 @@ router.post("/vendedor/sombreros/actualizar",cargar.single("archivo"),sombrerosC
 router.get('/usuario/productos',productController.index);
 //vista pagina de configuracion de usuario
 router.get('/usuario/config', productController.config);
-router.get('/vendedor/estadisticas/bar', productController.estadisticas);
+router.get('/vendedor/estadisticas', productController.estadisticas);
+
 // router.get('/usuario/home', productController.home);
 
 

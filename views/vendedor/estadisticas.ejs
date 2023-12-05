@@ -14,34 +14,49 @@
 </style>
 <main>
 
-    <div style="width: 80%; margin: auto;" width="400" height="200">
-        <center><h2>Cantidad de sombreros en pedidos</h2></center>
-        <canvas id="myChart">
-
+    <section id="cantidad_sombreros">
+        <div style="width: 80%; margin: auto;" width="400" height="200">
+            <center><h2>Cantidad de sombreros en pedidos</h2></center>
+            <canvas id="myChart">
+      
+            </canvas>
             
-        </canvas>
-        <button>Genera Reporte</button>
-    </div>
-
-    <div style="width: 80%; margin: auto;" width="400" height="200" class="mt-5">
-        <center><h2>Total de ganancias por sombrero</h2></center>
-        <canvas id="myChart2">
-
+        </div>
+        <div style="width: 80%; margin: auto;" width="400" height="200">
+    
+            <canvas id="myChartPie" class="mt-5">
+      
+            </canvas>
             
-        </canvas>
-        <button>Genera Reporte</button>
-    </div>
+            <button>Genera Reporte</button>
+        </div>
+    </section>
+    
+    <section id="cantidad_ingresos">
+        <div style="width: 80%; margin: auto;" width="400" height="200" class="mt-5">
+            <center><h2>Total de ganancias por sombrero</h2></center>
+            <canvas id="myChart2">
+    
+                
+            </canvas>
+            <!-- <button>Genera Reporte</button> -->
+        </div>
+    
+        <div style="width: 80%; margin: auto;" width="400" height="200">
+            <canvas id="myChart2Pie" class="mt-5">
+    
+                
+            </canvas>
+            <button>Genera Reporte</button>
+        </div>
+    </section>
 
-    <div style="width: 80%; margin: auto;" width="400" height="200">
-        <canvas id="myChart3">
-
-            
-        </canvas>
-        <button>Genera Reporte</button>
-    </div>
+    
 </main>
     
 <script>
+
+    /*Datos para graficar Cantidad de sombreros en pedidos*/
     document.addEventListener('DOMContentLoaded', function () {
         // Obtener datos de la página
         const data = <%- JSON.stringify(data1) %>;
@@ -76,6 +91,43 @@
         });
 
         // Obtener datos de la página
+        const dataPie = <%- JSON.stringify(data1) %>;
+
+
+        // Definir colores dinámicamente
+        const backgroundColorsPie = dataPie.map(() => getRandomColor());
+        const borderColorsPie = dataPie.map(() => getRandomColor());
+
+        // Configurar el gráfico
+        const ctxPie = document.getElementById('myChartPie').getContext('2d');
+        const myChartPie = new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+                labels: dataPie.map(item => item.nombre_sombrero),
+                datasets: [{
+                    label: 'Ventas',
+                    data: data.map(item => item.total_registros),
+                    backgroundColor: backgroundColorsPie,
+                    borderColor: borderColorsPie,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true, // Comienza desde cero en el eje y
+                        stepSize: 1 // Establece el paso para la escala del eje y (puedes ajustarlo según tus necesidades)
+                    }
+                }
+            }    
+        });
+
+        /*--------------------------------------FIN----------------------------------*/
+
+
+        /*-Datos para graficar los datos de las ganancias totales--*/
+        
+        // Obtener datos de la página
         const data2 = <%- JSON.stringify(data2) %>;
 
 
@@ -90,7 +142,7 @@
             data: {
                 labels: data2.map(item => item.nombre_sombrero),
                 datasets: [{
-                    label: 'Ventas',
+                    label: 'Ganancias',
                     data: data2.map(item => item.total_ventas),
                     backgroundColor: backgroundColors2,
                     borderColor: borderColors2,
@@ -107,11 +159,46 @@
             }    
         });
 
-         
+         // Obtener datos de la página
+        const data2Pie = <%- JSON.stringify(data2) %>;
+
+
+        // Definir colores dinámicamente
+        const backgroundColors2Pie = data2Pie.map(() => getRandomColor());
+        const borderColors2Pie = data2Pie.map(() => getRandomColor());
+
+        // Configurar el gráfico
+        const ctx2Pie = document.getElementById('myChart2Pie').getContext('2d');
+        const myChart2Pie = new Chart(ctx2Pie, {
+            type: 'pie',
+            data: {
+                labels: data2Pie.map(item => item.nombre_sombrero),
+                datasets: [{
+                    label: 'Ganancias',
+                    data: data2.map(item => item.total_ventas),
+                    backgroundColor: backgroundColors2Pie,
+                    borderColor: borderColors2Pie,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true, // Comienza desde cero en el eje y
+                        stepSize: 1 // Establece el paso para la escala del eje y (puedes ajustarlo según tus necesidades)
+                    }
+                }
+            }    
+        });
        
     });
+/*--------------------------------------FIN----------------------------------*/
+     
 
-     // Función para generar colores aleatorios
+
+
+
+    // Función para generar colores aleatorios para que le asignen a las barras y al pastel
      function getRandomColor() {
         const letters = '0123456789ABCDEF';
         let color = '#';
