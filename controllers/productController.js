@@ -10,8 +10,8 @@ var borrar = require("fs");
 const productController = {}
 //carga  la vista principal del proyecto
 
-productController.index = (req, res) =>{
-    conexion.query('SELECT * FROM sombreros', (err, datos) =>{
+productController.index = (req, res) => {
+    conexion.query('SELECT * FROM sombreros', (err, datos) => {
         if (err) {
             console.error('el error es;' + err);
         } else {
@@ -20,8 +20,16 @@ productController.index = (req, res) =>{
             // res.render('sombreros/index', {sombreros:datos})
         }
     })
-    }
+}
 
+
+
+productController.masVendidos = (req, res) => {
+
+
+
+
+}
 // productController.index = (req, res) => {
 //     sombrero.obtener(conexion, function (err, datos) {
 //         console.log(datos);
@@ -34,7 +42,7 @@ productController.index = (req, res) =>{
 // var conexion=require('../config/conexion');
 
 //carga  la vista principal del proyecto
-productController.home = (req, res) =>{
+productController.home = (req, res) => {
     res.render('home')
 }
 

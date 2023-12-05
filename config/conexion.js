@@ -10,14 +10,14 @@ const defaultConfig = {
 const configBDVendedor = {
     host: 'localhost',
     user: 'vendedor',
-    password: 'vendedor2023',
+    password: 'vende123',
     database: 'sombreros_calentanos'
 };
 
 const configBDUsuario = {
     host: 'localhost',
     user: 'usuario',
-    password: 'usuarioSombreros2023',
+    password: 'som12',
     database: 'sombreros_calentanos'
 }
 
