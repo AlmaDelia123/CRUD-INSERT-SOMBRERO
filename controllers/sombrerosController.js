@@ -113,6 +113,9 @@ conexion.query('SELECT * FROM sombreros', (err, datos) =>{
         res.redirect('/vendedor/sombreros?mostrarAlerta2=true');
         //res.redirect('/vendedor/sombreros');
     }
+
+    // obtener cantidad de sombreros bajos
+
 module.exports = sombreroController;
 // {
 
