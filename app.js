@@ -71,29 +71,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-//<<<<<<< HEAD
-//=======
-// var conexion = require('./config/conexion');
-// var mysql = require("mysql");
-
-// var con = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'chanocua24',
-//   database: 'sombreros_calentanos'
-// });
-
-
-// con.connect(
-//   (err) => {
-//       if (!err) {
-//           console.log('Conexion establecida http://localhost:3002');
-//       } else {
-//           console.log('Error de conexion');
-//       }
-//   });
-
-//>>>>>>> a5eeba61ffac9bc986554ad10752699675146480
 module.exports = app;
 
 

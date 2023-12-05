@@ -1,8 +1,8 @@
 
 /*este controller se encarga de realizar todas las operaciones
 con la vista de home del usuario */
-var conexion=require('../config/conexion');
 
+// var conexion=require('../config/conexion');
 const homeController = {}
 
 //carga  la vista principal del proyecto
