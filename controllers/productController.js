@@ -24,9 +24,17 @@ productController.index = (req, res) => {
 
 
 
-productController.masVendidos = (req, res) => {
+productController.estadisticas = (req, res) => {
 
-
+    conexion.query("SELECT p.id_sombreros, s.nombre AS nombre_sombrero, COUNT(*) AS total_registros FROM pedido p JOIN sombreros s ON p.id_sombreros = s.id GROUP BY p.id_sombreros, s.nombre", (err, datos)=>{
+        if(err){
+            console.log(err);
+            res.status(500).json({ error: 'Error al obtener estadísticas' });
+            // res.redirect("/vendedor/home");
+        }else{
+            res.render("vendedor/estadisticas", {data:datos})
+        }
+    })
 
 
 }

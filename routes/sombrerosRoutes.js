@@ -53,6 +53,7 @@ router.get('/vendedor/sombreros/editar/:id',sombrerosController.editar);
 router.post("/vendedor/sombreros/actualizar",cargar.single("archivo"),sombrerosController.actualizar);
 
 router.get('/usuario/productos',productController.index);
+router.get('/vendedor/estadisticas/bar', productController.estadisticas);
 // router.get('/usuario/home', productController.home);
 
 
