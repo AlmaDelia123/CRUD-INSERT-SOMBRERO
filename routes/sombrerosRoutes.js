@@ -40,7 +40,7 @@ router.post('/registrarUsuario', usersController.registrarUsuarioPOST)
 // router.get('/',sombrerosController.index);
 
 // gets y post para el vendedor
-router.get('/vendedor/home', vendedorController.home)
+router.get('/vendedor/home', sombrerosController.home)
 
 router.get('/vendedor/sombreros',sombrerosController.index);
 
