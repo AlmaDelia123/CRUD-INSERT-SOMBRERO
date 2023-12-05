@@ -28,7 +28,7 @@ usersController.loginPOST = (req, res) => {
 
     // req.getConnection((err, conexion) => {
     conexion.query("SELECT * FROM users_sesion WHERE correo = ? AND password = ?", [correo, password], (err, datosConsultados) => {
-        console.log(datosConsultados.length)
+        // console.log(datosConsultados.length)
         if (err) {
             console.log(err);
             res.status(500).send('No se pudo iniciar sesión ' + err);

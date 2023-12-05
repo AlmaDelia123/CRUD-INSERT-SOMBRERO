@@ -10,8 +10,8 @@ var borrar = require("fs");
 const productController = {}
 //carga  la vista principal del proyecto
 
-productController.index = (req, res) =>{
-    conexion.query('SELECT * FROM sombreros', (err, datos) =>{
+productController.index = (req, res) => {
+    conexion.query('SELECT * FROM sombreros', (err, datos) => {
         if (err) {
             console.error('el error es;' + err);
         } else {
@@ -20,8 +20,22 @@ productController.index = (req, res) =>{
             // res.render('sombreros/index', {sombreros:datos})
         }
     })
-    }
+}
 
+
+
+productController.estadisticas = (req, res) => {
+
+    conexion.query("SELECT p.id_sombreros, s.nombre AS nombre_sombrero, COUNT(*) AS total_registros FROM pedido p JOIN sombreros s ON p.id_sombreros = s.id GROUP BY p.id_sombreros, s.nombre", (err, datos)=>{
+        if(err){
+            console.log(err);
+            res.status(500).json({ error: 'Error al obtener estadísticas' });
+            // res.redirect("/vendedor/home");
+        }else{
+            res.render("vendedor/estadisticas", {data:datos})
+        }
+    })
+}
 // productController.index = (req, res) => {
 //     sombrero.obtener(conexion, function (err, datos) {
 //         console.log(datos);
@@ -40,7 +54,7 @@ productController.config = (req, res) =>{
 
 
 //carga  la vista principal del proyecto
-productController.home = (req, res) =>{
+productController.home = (req, res) => {
     res.render('home')
 }
 

@@ -11,7 +11,11 @@ var conexion = createConnection(configBDVendedor);
 
 sombreroController = {}
 
-//mostrar sombreros en el index
+//carga el dashboard del vendedor
+sombreroController.home = (req, res) =>{
+    res.render('vendedor/home');
+}
+
 sombreroController.index = (req, res) =>{
 conexion.query('SELECT * FROM sombreros', (err, datos) =>{
     if (err) {

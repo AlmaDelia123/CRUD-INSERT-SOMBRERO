@@ -2,9 +2,8 @@ var express = require('express');
 var router = express.Router();
 const sombrerosController = require("../controllers/sombrerosController");
 const usersController = require("../controllers/usersController");
-const homeController = require('../controllers/homeController');
-const vendedorController = require('../controllers/vendedorController');
-
+// const homeController = require('../controllers/homeController');
+// const vendedorController = require('../controllers/vendedorController')
 
 var multer = require('multer');
 const { route } = require('../app');
@@ -41,7 +40,8 @@ router.post('/registrarUsuario', usersController.registrarUsuarioPOST)
 // router.get('/',sombrerosController.index);
 
 // gets y post para el vendedor
-router.get('/vendedor/home', vendedorController.home)
+router.get('/vendedor/home', sombrerosController.home)
+
 router.get('/vendedor/sombreros',sombrerosController.index);
 router.get('/vendedor/sombreros/crear',sombrerosController.crear);
 router.post("/vendedor/sombreros/crear",cargar.single("archivo"),sombrerosController.guardar);
@@ -54,6 +54,7 @@ router.post("/vendedor/sombreros/actualizar",cargar.single("archivo"),sombrerosC
 router.get('/usuario/productos',productController.index);
 //vista pagina de configuracion de usuario
 router.get('/usuario/config', productController.config);
+router.get('/vendedor/estadisticas/bar', productController.estadisticas);
 // router.get('/usuario/home', productController.home);
 
 

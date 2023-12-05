@@ -1,0 +1,73 @@
+<%- include('../partials/__header_vendor') %>
+<style>
+    main {
+        padding-left: 0;
+        padding-top: 5rem;
+    }
+
+    @media (min-width: 768px) {
+        main {
+            padding-left: 15rem;
+            padding-top: 5rem;
+        }
+    }
+</style>
+<main>
+
+    <div style="width: 80%; margin: auto;" width="400" height="200">
+        <canvas id="myChart">
+
+            
+        </canvas>
+        <button>Genera Reporte</button>
+    </div>
+</main>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Obtener datos de la página
+        const data = <%- JSON.stringify(data) %>;
+
+        // Definir colores dinámicamente
+        const backgroundColors = data.map(() => getRandomColor());
+        const borderColors = data.map(() => getRandomColor());
+
+        // Configurar el gráfico
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.map(item => item.nombre_sombrero),
+                datasets: [{
+                    label: 'Ventas',
+                    data: data.map(item => item.total_registros),
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true, // Comienza desde cero en el eje y
+                        stepSize: 1 // Establece el paso para la escala del eje y (puedes ajustarlo según tus necesidades)
+                    }
+                }
+            }
+        });
+
+        // Función para generar colores aleatorios
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    });
+</script>
+
+    </body>
+
+    </html>

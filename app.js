@@ -71,6 +71,11 @@ app.use(function(err, req, res, next) {
 });
 
 
+
+//datos necesarios para graficar
+app.use(express.static('public')); // Directorio donde estarán los archivos estáticos
+
+
 module.exports = app;
 
 
