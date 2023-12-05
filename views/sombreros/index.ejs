@@ -92,7 +92,8 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
-    <!-- swwet alert para eliminar el registro -->
+
+<!-- swwet alert para eliminar el registro -->
    <script>
         function confirmar(id) {
         Swal.fire({
@@ -130,44 +131,72 @@
         });
     }
 
-   </script>
+   </script>   
 
-    <!-- sweet alert de el registro exitoso -->
-    <script>
-                // Función para mostrar el Sweet Alert
-                function mostrarSweetAlert() {
-                    Swal.fire({
+<!-- sweetAlert completo de el registro, la actualizacion y l cantidad baja del stock  -->
+<script>
+    // Sweet alert de el registro exitoso 
+    // Función para mostrar el Sweet Alert
+    function mostrarSweetAlert() {
+
+        const filas = document.querySelectorAll('tbody tr'); // Seleccionar todas las filas de la tabla
+
+        filas.forEach((fila) => {
+
+        const cantidad = parseInt(fila.querySelector('td:nth-child(7)').innerText); // Obtener la cantidad (ajusta el índice si es necesario)
+    
+        // Verificar si la cantidad es menor que 4
+        if (cantidad < 4) {
+
+        fila.style.color = 'red'; // Aplicar color rojo al texto de la fila
+        
+        Swal.fire({
                         position: 'center',
                         icon: 'success',
                         title: 'Registro exitoso',
                         showConfirmButton: false,
                         timer: 1500
                     });
-                }
-            
-                // Verifica si la URL tiene el parámetro 'mostrarAlerta' y muestra el Sweet Alert en consecuencia
-                const urlParams = new URLSearchParams(window.location.search);
+
+                 }
+        });
+    }
+
+    // Verifica si la URL tiene el parámetro 'mostrarAlerta' y muestra el Sweet Alert en consecuencia
+    const urlParams = new URLSearchParams(window.location.search);
                 const mostrarAlerta = urlParams.get('mostrarAlerta');
                 if (mostrarAlerta) {
                     window.onload = function () {
                         mostrarSweetAlert();
                     };
+                }else{
+                    revisarCantidad();
                 }
-    </script>
 
-    <!-- SweetAlert para la actualizacion del registro -->
-    <script>
-        // Función para mostrar el Sweet Alert
-        function mostrarSweetAlert2() {
-            Swal.fire({
+    // SweetAlert para la actualizacion del registro 
+    function mostrarSweetAlert2() {
+
+        const filas = document.querySelectorAll('tbody tr'); // Seleccionar todas las filas de la tabla
+
+        filas.forEach((fila) => {
+
+        const cantidad = parseInt(fila.querySelector('td:nth-child(7)').innerText); // Obtener la cantidad (ajusta el índice si es necesario)
+    
+        // Verificar si la cantidad es menor que 4
+        if (cantidad < 4) {
+
+        fila.style.color = 'red'; // Aplicar color rojo al texto de la fila
+        
+        Swal.fire({
                 position: 'center',
                 icon: 'success',
                 title: 'Registro Actualizado Exitoso!',
                 showConfirmButton: false,
                 timer: 1500
             });
-        }
-    
+          }
+        });
+    }
         // Verifica si la URL tiene el parámetro 'mostrarAlerta' y muestra el Sweet Alert en consecuencia
         const urlParams2 = new URLSearchParams(window.location.search);
         const mostrarAlerta2 = urlParams.get('mostrarAlerta2');
@@ -175,10 +204,36 @@
             window.onload = function () {
                 mostrarSweetAlert2();
             };
+        }else{
+            revisarCantidad();
         }
-    </script>
-    
-    <!--alerta para mostrar que los stokcs en sombreros estan bajos-->
-    
-    
-    <%- include ../layouts/cabecera.ejs %>
+
+    // Alerta para mostrar que los stokcs en sombreros estan bajos
+    // Función para revisar la cantidad y aplicar estilos
+    function revisarCantidad() {
+
+        const filas = document.querySelectorAll('tbody tr'); // Seleccionar todas las filas de la tabla
+
+        filas.forEach((fila) => {
+
+            const cantidad = parseInt(fila.querySelector('td:nth-child(7)').innerText); // Obtener la cantidad (ajusta el índice si es necesario)
+            
+            // Verificar si la cantidad es menor que 4
+            if (cantidad < 4) {
+
+                fila.style.color = 'red'; // Aplicar color rojo al texto de la fila
+                
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Revisar productos bajos en cantidad',
+                    text: 'Hay productos con cantidad baja. Favor de revisar.',
+                    showConfirmButton: false,
+                    timer: 3000 // Duración de la alerta
+                });
+            }
+        });
+    }
+
+</script>
+
+<%- include ../layouts/cabecera.ejs %>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://bootswatch.com/5/darkly/bootstrap.min.css">
+    <title>Ajustes - Sombreros Calentanos</title>
+
+     <!-- CSS de Bootstrap 5 -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- CSS de Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    /* Estilos personalizados */
+    .form-container {
+            max-width: 600px;
+            margin: 50px 0 ; /* alinear a izquierda el formulario */
+            padding: 20px;
+            margin-top: 20px; /* Espacio vacío en la parte superior */
+            background-color: #786F6F; /* Fondo para el formulario */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+        }
+    
+    
+    /* Estilo personalizado para el tamaño del ícono */
+    .large-icon {
+      font-size: 12rem; /* Ajusta el tamaño del ícono cambiando el valor de font-size */
+    }
+  </style>
+
+</head>
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Sombreros Calentanos</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Home
+                  <span class="visually-hidden">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="se">Pedidos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Separated link</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+    
+      <!-- formulario para el cambio -->
+      <div class="container">
+        <div class="form-container">
+          <form>
+            <fieldset>
+              <legend>Ajustes Usuario</legend>
+
+              <i class="bi bi-person-circle large-icon"></i>
+              <br>
+                <!-- Boton para cambiar la foto de perfil -->
+              <button type="button" class="btn btn-primary btn-x10">
+                cambiar foto de perfil   
+              </button>
+    
+              <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                  <input type="text" readonly="" class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1" class="form-label mt-4">Correo Electronico</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo Electronico">
+              </div>
+    
+              <div class="form-group">
+                <label for="exampleInputPassword1" class="form-label mt-4">Contrasena</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contrasena" autocomplete="off">
+              </div>
+              <div class="form-group">
+                
+              <div class="form-group">
+                <label for="formFile" class="form-label mt-4">Default file input example</label>
+                <input class="form-control" type="file" id="formFile">
+              </div>
+    
+              <br>
+    
+              <div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+              </div>          
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      
+
+      
+            <!-- Scripts de Bootstrap 5 y Bootstrap Icons (JavaScript) -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

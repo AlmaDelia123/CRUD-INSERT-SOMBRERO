@@ -33,6 +33,12 @@ productController.index = (req, res) =>{
 
 // var conexion=require('../config/conexion');
 
+//carga el apartado de configuracion del vendedor
+productController.config = (req, res) =>{
+    res.render('../views/usuario/conf_user');
+}
+
+
 //carga  la vista principal del proyecto
 productController.home = (req, res) =>{
     res.render('home')

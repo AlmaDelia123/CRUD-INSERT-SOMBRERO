@@ -11,6 +11,7 @@ var conexion = createConnection(configBDVendedor);
 
 sombreroController = {}
 
+//mostrar sombreros en el index
 sombreroController.index = (req, res) =>{
 conexion.query('SELECT * FROM sombreros', (err, datos) =>{
     if (err) {
@@ -20,6 +21,7 @@ conexion.query('SELECT * FROM sombreros', (err, datos) =>{
     }
 })
 }
+
 //Funcion que dirige a la vista crear sombrero con su formulario
     sombreroController.crear =(req, res)=> {
         res.render('sombreros/crear');
