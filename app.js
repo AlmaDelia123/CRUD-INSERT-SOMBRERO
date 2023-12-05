@@ -71,8 +71,8 @@ app.use(function(err, req, res, next) {
 });
 
 
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 // var conexion = require('./config/conexion');
 // var mysql = require("mysql");
 
@@ -93,7 +93,7 @@ app.use(function(err, req, res, next) {
 //       }
 //   });
 
->>>>>>> a5eeba61ffac9bc986554ad10752699675146480
+//>>>>>>> a5eeba61ffac9bc986554ad10752699675146480
 module.exports = app;
 
 
