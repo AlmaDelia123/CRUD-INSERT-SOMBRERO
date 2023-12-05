@@ -3,7 +3,7 @@ const mysql = require("mysql");
 const defaultConfig = {
     host: 'localhost',
     user: 'root',
-    password: 'chanocua24',
+    password: 'root2023',
     database: 'sombreros_calentanos'
 };
 
