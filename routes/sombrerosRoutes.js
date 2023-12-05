@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 const sombrerosController = require("../controllers/sombrerosController");
 const usersController = require("../controllers/usersController");
-const homeController = require('../controllers/homeController');
-const vendedorController = require('../controllers/vendedorController')
+// const homeController = require('../controllers/homeController');
+// const vendedorController = require('../controllers/vendedorController')
 
 var multer = require('multer');
 const { route } = require('../app');
@@ -40,7 +40,7 @@ router.post('/registrarUsuario', usersController.registrarUsuarioPOST)
 // router.get('/',sombrerosController.index);
 
 // gets y post para el vendedor
-router.get('/vendedor/home', vendedorController.home)
+router.get('/vendedor/home', sombrerosController.home)
 
 router.get('/vendedor/sombreros',sombrerosController.index);
 
