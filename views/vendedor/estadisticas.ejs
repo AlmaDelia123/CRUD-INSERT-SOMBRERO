@@ -15,6 +15,7 @@
 <main>
 
     <div style="width: 80%; margin: auto;" width="400" height="200">
+        <center><h2>Cantidad de sombreros en pedidos</h2></center>
         <canvas id="myChart">
 
             
@@ -22,7 +23,8 @@
         <button>Genera Reporte</button>
     </div>
 
-    <div style="width: 80%; margin: auto;" width="400" height="200">
+    <div style="width: 80%; margin: auto;" width="400" height="200" class="mt-5">
+        <center><h2>Total de ganancias por sombrero</h2></center>
         <canvas id="myChart2">
 
             
@@ -70,15 +72,11 @@
                         stepSize: 1 // Establece el paso para la escala del eje y (puedes ajustarlo según tus necesidades)
                     }
                 }
-            }
-
-
-
-            
+            }    
         });
 
         // Obtener datos de la página
-        const data2 = <%- JSON.stringify(data1) %>;
+        const data2 = <%- JSON.stringify(data2) %>;
 
 
         // Definir colores dinámicamente
@@ -93,7 +91,7 @@
                 labels: data2.map(item => item.nombre_sombrero),
                 datasets: [{
                     label: 'Ventas',
-                    data: data2.map(item => item.total_registros),
+                    data: data2.map(item => item.total_ventas),
                     backgroundColor: backgroundColors2,
                     borderColor: borderColors2,
                     borderWidth: 1
@@ -106,11 +104,7 @@
                         stepSize: 1 // Establece el paso para la escala del eje y (puedes ajustarlo según tus necesidades)
                     }
                 }
-            }
-
-
-
-            
+            }    
         });
 
          
