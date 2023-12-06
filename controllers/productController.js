@@ -6,7 +6,7 @@ var conexion = createConnection(configBDUsuario);
 var sombrero = require("../model/sombrero");
 var borrar = require("fs");
 
-
+const ExcelJS = require('exceljs');
 const productController = {}
 //carga  la vista principal del proyecto
 
@@ -22,7 +22,7 @@ productController.index = (req, res) => {
     })
 }
 
-
+//Consulta de  los pedidos
 
 productController.estadisticas = (req, res) => {
 
