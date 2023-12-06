@@ -70,7 +70,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
+app.use('/generar-informe', sombrerosRouter);
 
 //datos necesarios para graficar
 app.use(express.static('public')); // Directorio donde estarán los archivos estáticos

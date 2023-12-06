@@ -56,7 +56,19 @@ router.get('/usuario/productos',productController.index);
 router.get('/usuario/config', productController.config);
 router.get('/vendedor/estadisticas', productController.estadisticas);
 
+
+//router.get('/vendedor/estadisticas', productController.generarReporte);
 // router.get('/usuario/home', productController.home);
+
+
+
+// Definir la ruta POST para generar el informe en Excel
+router.post('/generar-informe', productController.generarInforme);
+
+
+
+
+
 
 
 

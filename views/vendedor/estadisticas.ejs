@@ -28,8 +28,24 @@
       
             </canvas>
             
-            <button>Genera Reporte</button>
+            
         </div>
+
+         <!-- Sección de gráficas y estadísticas aquí -->
+
+    <form id="downloadForm" action="/generar-informe" method="post" style="display: none;">
+        <!-- Input oculto para enviar los datos de estadísticas al controlador -->
+        <input type="hidden" name="data1" value='<%- JSON.stringify(data1) %>'>
+        <input type="hidden" name="data2" value='<%- JSON.stringify(data2) %>'>
+    </form>
+    
+    <button onclick="downloadExcel()">Descargar Informe</button>
+
+    <!-- Resto del contenido de la vista aquí -->
+
+
+
+
     </section>
     
     <section id="cantidad_ingresos">
@@ -47,7 +63,9 @@
     
                 
             </canvas>
-            <button>Genera Reporte</button>
+            <form action="/generar-informe" method="post">
+                <button type="submit">Generar Informe en Excel</button>
+            </form>
         </div>
     </section>
 
@@ -55,6 +73,12 @@
 </main>
     
 <script>
+
+    function downloadExcel() {
+        // Enviar el formulario al controlador al hacer clic en el botón
+        document.getElementById('downloadForm').submit();
+    }
+
 
     /*Datos para graficar Cantidad de sombreros en pedidos*/
     document.addEventListener('DOMContentLoaded', function () {
