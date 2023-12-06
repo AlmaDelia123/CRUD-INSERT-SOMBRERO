@@ -1,13 +1,14 @@
 const ExcelJS = require('exceljs');
 const path = require('path');
 
-const { createConnection, configBDUsuario } = require('../config/conexion');
+const { createConnection, configBDUsuario, configBDVendedor } = require('../config/conexion');
+var conexion = createConnection(configBDVendedor);
 const borrar = require('fs');
 
 const productController = {};
 
 productController.index = (req, res) => {
-    createConnection(configBDUsuario).query('SELECT * FROM sombreros', (err, datos) => {
+    conexion.query('SELECT * FROM sombreros', (err, datos) => {
         if (err) {
             console.error('El error es: ' + err);
         } else {
@@ -18,20 +19,19 @@ productController.index = (req, res) => {
 };
 
 productController.estadisticas = (req, res) => {
-    createConnection(configBDUsuario).query(
-        'SELECT p.id_sombreros, s.nombre AS nombre_sombrero, COUNT(*) AS total_registros FROM pedido p JOIN sombreros s ON p.id_sombreros = s.id GROUP BY p.id_sombreros, s.nombre',
+    conexion.query('SELECT p.id_sombreros, s.nombre AS nombre_sombrero, COUNT(*) AS total_registros FROM pedido p JOIN sombreros s ON p.id_sombreros = s.id GROUP BY p.id_sombreros, s.nombre',
         (err, datos) => {
             if (err) {
                 console.log(err);
                 res.status(500).json({ error: 'Error al obtener estadísticas' });
             } else {
-                createConnection(configBDUsuario).query(
-                    'SELECT p.id_sombreros, s.nombre AS nombre_sombrero, SUM(s.precio * p.cantidad) AS total_ventas FROM pedido p JOIN sombreros s ON p.id_sombreros = s.id GROUP BY p.id_sombreros, s.nombre',
+                conexion.query('SELECT p.id_sombreros, s.nombre AS nombre_sombrero, SUM(s.precio * p.cantidad) AS total_ventas FROM pedido p JOIN sombreros s ON p.id_sombreros = s.id GROUP BY p.id_sombreros, s.nombre',
                     (err2, datos2) => {
                         if (err2) {
                             console.log(err);
                             res.status(500).json({ error: 'Error al obtener estadísticas' });
                         } else {
+                            console.log(datos + " "+ datos2);
                             res.render('vendedor/estadisticas', { data1: datos, data2: datos2 });
                         }
                     }
@@ -42,11 +42,11 @@ productController.estadisticas = (req, res) => {
 };
 
 productController.generarInforme = (req, res) => {
-     // Obtener los datos de estadísticas desde el cuerpo de la solicitud
-     //const data1 = JSON.parse(req.body.data1);
-     //const data2 = JSON.parse(req.body.data2);
+    // Obtener los datos de estadísticas desde el cuerpo de la solicitud
+    //const data1 = JSON.parse(req.body.data1);
+    //const data2 = JSON.parse(req.body.data2);
     // Realizar las consultas necesarias para obtener los datos
-    createConnection(configBDUsuario).query(
+    conexion.query(
         'SELECT p.id_sombreros, s.nombre AS nombre_sombrero, COUNT(*) AS total_registros FROM pedido p JOIN sombreros s ON p.id_sombreros = s.id GROUP BY p.id_sombreros, s.nombre',
         (err, datos1) => {
             if (err) {
@@ -55,7 +55,7 @@ productController.generarInforme = (req, res) => {
                 return;
             }
 
-            createConnection(configBDUsuario).query(
+            conexion.query(
                 'SELECT p.id_sombreros, s.nombre AS nombre_sombrero, SUM(s.precio * p.cantidad) AS total_ventas FROM pedido p JOIN sombreros s ON p.id_sombreros = s.id GROUP BY p.id_sombreros, s.nombre',
                 (err2, datos2) => {
                     if (err2) {

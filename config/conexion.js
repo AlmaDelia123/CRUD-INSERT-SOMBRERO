@@ -3,14 +3,14 @@ const mysql = require("mysql");
 const defaultConfig = {
     host: 'localhost',
     user: 'root',
-    password: 'itsh2023',
+    password: 'chanocua24',
     database: 'sombreros_calentanos'
 };
 
 const configBDVendedor = {
     host: 'localhost',
     user: 'vendedor',
-    password: 'vendedor2023',
+    password: 'vende123',
     database: 'sombreros_calentanos'
 };
 
