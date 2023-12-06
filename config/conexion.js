@@ -3,21 +3,21 @@ const mysql = require("mysql");
 const defaultConfig = {
     host: 'localhost',
     user: 'root',
-    password: 'chanocua24',
+    password: 'itsh2023',
     database: 'sombreros_calentanos'
 };
 
 const configBDVendedor = {
     host: 'localhost',
     user: 'vendedor',
-    password: 'vende123',
+    password: 'vendedor2023',
     database: 'sombreros_calentanos'
 };
 
 const configBDUsuario = {
     host: 'localhost',
     user: 'usuario',
-    password: 'som12',
+    password: 'usuarioSombreros2023',
     database: 'sombreros_calentanos'
 }
 
